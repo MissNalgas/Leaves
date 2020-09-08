@@ -1,6 +1,8 @@
 package com.missnalgas.phr2.viewpager.fragments
 
+import android.os.Build
 import android.os.Bundle
+import android.text.Layout.JUSTIFICATION_MODE_INTER_WORD
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +25,7 @@ class ContentFragment(@NonNull val data : Phrase) : Fragment() {
         view?.let { view ->
             val tvContent = view.findViewById<TextView>(R.id.phrase_content)
             tvContent.text = data.content
+            tvContent.justificationMode = JUSTIFICATION_MODE_INTER_WORD
         }
     }
 
