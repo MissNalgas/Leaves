@@ -18,11 +18,9 @@ class ViewAdapter(@NonNull fm : FragmentManager,@NonNull val data : Phrase) : Fr
     override fun getItem(position: Int): Fragment {
         return when(position) {
             0 -> {
-                Log.i("asddsa", "first fragment")
                 TitleFragment(data)
             }
             1 -> {
-                Log.i("asddsa", "second fragment")
                 ContentFragment(data)
             }
             else -> TitleFragment(data)

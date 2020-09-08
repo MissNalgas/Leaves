@@ -6,6 +6,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/phrase_content"/>
+        android:id="@+id/phrase_content"
+        android:gravity="center"
+        android:textColor="@color/colorText"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
