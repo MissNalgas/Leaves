@@ -2,16 +2,20 @@ package com.missnalgas.phr2.viewmodel
 
 import android.animation.ArgbEvaluator
 import android.app.Application
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
+import com.missnalgas.phr2.phrase.Phrase
 import kotlin.math.floor
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     private val onPageChangeListener : MutableLiveData<Float?> by lazy {
         return@lazy MutableLiveData<Float?>()
@@ -19,6 +23,32 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private fun gradientCalculator(colorA : Int, colorB : Int, colorC : Int) : GradientDrawable {
         return GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, intArrayOf(colorA,colorB, colorC))
+    }
+
+    private val onDataFetch : MutableLiveData<Phrase?> by lazy {
+        return@lazy MutableLiveData<Phrase?>()
+    }
+
+    val dataLiveData : LiveData<Phrase?> by lazy {
+        return@lazy Transformations.map(onDataFetch) { phr ->
+            phr
+        }
+    }
+
+
+    fun fetchData(context : Context) {
+        val url = "https://mssnapplications.com/phr/get/"
+        val queue = Volley.newRequestQueue(context)
+
+        val request = JsonObjectRequest(Request.Method.GET, url,null, {
+            val phr = Phrase(it["phrase"] as String, "You know journey before destination")
+            onDataFetch.postValue(phr)
+        }, null)
+
+
+        //onDataFetch.postValue(Phrase("hello", "hello world"))
+        queue.add(request)
+
     }
 
     val backgroundColorLiveData : LiveData<GradientDrawable?> by lazy {
@@ -34,8 +64,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 if (position == 1 ) {
                     gradientCalculator(nextColor[0], nextColor[1], nextColor[2])
                 } else {
-                    val background = gradientCalculator(argbEvaluator.evaluate(offset, prevColor[0], nextColor[0]) as Int, argbEvaluator.evaluate(offset, prevColor[1], nextColor[1]) as Int, argbEvaluator.evaluate(offset, prevColor[2], nextColor[2]) as Int)
-                    return@let background as GradientDrawable
+                    return@let gradientCalculator(argbEvaluator.evaluate(offset, prevColor[0], nextColor[0]) as Int, argbEvaluator.evaluate(offset, prevColor[1], nextColor[1]) as Int, argbEvaluator.evaluate(offset, prevColor[2], nextColor[2]) as Int)
                 }
 
             }

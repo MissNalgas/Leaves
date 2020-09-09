@@ -9,7 +9,7 @@ import com.missnalgas.phr2.phrase.Phrase
 import com.missnalgas.phr2.viewpager.fragments.ContentFragment
 import com.missnalgas.phr2.viewpager.fragments.TitleFragment
 
-class ViewAdapter(@NonNull fm : FragmentManager,@NonNull val data : Phrase) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class ViewAdapter(@NonNull fm : FragmentManager,@NonNull var data : Phrase) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getCount(): Int {
         return 2
