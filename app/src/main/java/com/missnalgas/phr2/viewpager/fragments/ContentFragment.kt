@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.missnalgas.phr2.MainActivity
 import com.missnalgas.phr2.R
 import com.missnalgas.phr2.phrase.Phrase
 import java.util.*
@@ -28,13 +29,6 @@ class ContentFragment(@NonNull val data : Phrase) : Fragment() {
             val tvContent = view.findViewById<TextView>(R.id.phrase_content)
             tvContent.text = data.content
             tvContent.justificationMode = JUSTIFICATION_MODE_INTER_WORD
-
-            val swipeRefresh = view.findViewById<SwipeRefreshLayout>(R.id.swipe_refresh)
-            swipeRefresh.setOnRefreshListener {
-
-                Toast.makeText(context, "Updated", Toast.LENGTH_LONG).show()
-                swipeRefresh.isRefreshing = false
-            }
         }
     }
 

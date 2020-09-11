@@ -36,19 +36,8 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     }
 
 
-    fun fetchData(context : Context) {
-        val url = "https://mssnapplications.com/phr/get/"
-        val queue = Volley.newRequestQueue(context)
-
-        val request = JsonObjectRequest(Request.Method.GET, url,null, {
-            val phr = Phrase(it["phrase"] as String, "You know journey before destination")
-            onDataFetch.postValue(phr)
-        }, null)
-
-
-        //onDataFetch.postValue(Phrase("hello", "hello world"))
-        queue.add(request)
-
+    fun fetchData(phr : Phrase) {
+        onDataFetch.postValue(phr)
     }
 
     val backgroundColorLiveData : LiveData<GradientDrawable?> by lazy {
