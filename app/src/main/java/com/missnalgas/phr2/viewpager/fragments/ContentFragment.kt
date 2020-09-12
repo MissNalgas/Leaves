@@ -5,6 +5,7 @@ import android.text.Layout.JUSTIFICATION_MODE_INTER_WORD
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
@@ -25,6 +26,9 @@ class ContentFragment(@NonNull val data : Phrase) : Fragment() {
             val tvContent = view.findViewById<TextView>(R.id.phrase_content)
             tvContent.text = data.content
             tvContent.justificationMode = JUSTIFICATION_MODE_INTER_WORD
+
+            val iview = view.findViewById<RelativeLayout>(R.id.view_i)
+            iview.tooltipText = data.author
         }
     }
 

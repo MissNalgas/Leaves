@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     private val viewModel : MainViewModel by lazy {
         return@lazy ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
     }
-    private var data = Phrase("The Lopen", "Getting some data for you.")
+    private var data = Phrase("The Lopen", "Getting some data for you.", "Mssn")
 
     private val pageChangeListener : ViewPager.OnPageChangeListener by lazy {
         object : ViewPager.OnPageChangeListener {
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         val queue = Volley.newRequestQueue(this)
 
         val request = JsonObjectRequest(Request.Method.GET, url, null, {
-            viewModel.fetchData(Phrase(it["title"] as String, it["content"] as String))
+            viewModel.fetchData(Phrase(it["title"] as String, it["content"] as String, it["author"] as String))
         }, { Toast.makeText(this, getText(R.string.connection_failure), Toast.LENGTH_SHORT).show()})
 
         queue.add(request)
