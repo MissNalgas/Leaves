@@ -1,25 +1,19 @@
 package com.missnalgas.phr2
 
-import android.media.audiofx.BassBoost
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.missnalgas.phr2.phrase.Phrase
 import com.missnalgas.phr2.viewmodel.MainViewModel
 import com.missnalgas.phr2.viewmodel.ViewModelFactory
 import com.missnalgas.phr2.viewpager.ViewAdapter
-import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
 
@@ -56,8 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         val request = JsonObjectRequest(Request.Method.GET, url, null, {
             viewModel.fetchData(Phrase(it["title"] as String, it["content"] as String))
-            Log.i("asddsa", "Fetch data $it")
-        }, { Toast.makeText(this, "Connection failure :(", Toast.LENGTH_SHORT).show()})
+        }, { Toast.makeText(this, getText(R.string.connection_failure), Toast.LENGTH_SHORT).show()})
 
         queue.add(request)
     }
