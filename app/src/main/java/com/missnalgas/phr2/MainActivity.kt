@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     private val viewModel : MainViewModel by lazy {
         return@lazy ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
     }
-    private var data = Phrase("The Lopen", "Getting some data for you.", "Mssn")
+    private var data = Phrase("Loading...", "Getting some data for you.", "Mssn")
 
     private val pageChangeListener : ViewPager.OnPageChangeListener by lazy {
         object : ViewPager.OnPageChangeListener {
