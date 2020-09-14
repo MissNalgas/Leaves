@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.gms.ads.MobileAds
 import com.missnalgas.phr2.phrase.Phrase
 import com.missnalgas.phr2.viewmodel.MainViewModel
 import com.missnalgas.phr2.viewmodel.ViewModelFactory
@@ -71,6 +72,8 @@ class MainActivity : AppCompatActivity() {
 
         fetchData()
 
+        MobileAds.initialize(this)
+
     }
 
 
@@ -84,7 +87,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.dataLiveData.observe(this, { phr ->
             phr?.let {
                 data = phr
-                vp.adapter?.let {adapter ->
+                vp.adapter?.let {_ ->
                     val viewAdapter = ViewAdapter(supportFragmentManager, data)
                     vp.adapter = viewAdapter
                     vp.adapter?.let { it.notifyDataSetChanged() }

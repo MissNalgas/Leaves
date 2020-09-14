@@ -1,9 +1,11 @@
 package com.missnalgas.phr2.menu.recyclerview
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.missnalgas.phr2.R
@@ -19,15 +21,34 @@ class MenuAdapter(private val items : List<PMenuItem>) : RecyclerView.Adapter<Me
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = items[position]
+
         val view  = holder.itemView as CardView
         view.radius = 25.0f
 
         val textView = view.findViewById<TextView>(R.id.menu_item_text_view)
-        textView.text = items[position].title
+        textView.text = item.title
 
+        item.image?.let {
+            val imageView = view.findViewById<ImageView>(R.id.menu_item_imageview)
+            imageView.setImageDrawable(it)
+        }
 
-        view.setOnClickListener {
-            Toast.makeText(view.context, "Hello World", Toast.LENGTH_SHORT).show()
+        item.textColor?.let {
+            textView.setTextColor(it)
+        }
+
+        item.color?.let {
+            view.setCardBackgroundColor(it)
+        }
+
+        item.clickListener?.let {
+            view.setOnClickListener(it)
+        }
+
+        if (position == 0) {
+            val linearLayout = view.findViewById<LinearLayout>(R.id.linearlayout)
+            LayoutInflater.from(linearLayout.context).inflate(R.layout.textview_layout, linearLayout, true)
         }
 
     }
