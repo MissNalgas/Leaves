@@ -27,7 +27,15 @@
                 android:layout_marginHorizontal="15dp"
                 android:fontFamily="@font/asap"
                 android:textSize="21sp"/>
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent" android:layout_height="match_parent"
+                android:visibility="gone"
+                android:fontFamily="@font/asap"
+                android:textSize="15sp"
+                android:layout_marginHorizontal="17dp"
+                android:id="@+id/description_textview">
 
+            </TextView>
 
         </LinearLayout>
 

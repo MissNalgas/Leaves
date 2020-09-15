@@ -2,6 +2,7 @@ package com.missnalgas.phr2.menu.recyclerview
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -11,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.missnalgas.phr2.R
 import com.missnalgas.phr2.menu.PMenuItem
 
-class MenuAdapter(private val items : List<PMenuItem>) : RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
+class MenuAdapter(private val items : Array<PMenuItem>) : RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: CardView) : RecyclerView.ViewHolder(itemView)
 
@@ -29,26 +30,26 @@ class MenuAdapter(private val items : List<PMenuItem>) : RecyclerView.Adapter<Me
         val textView = view.findViewById<TextView>(R.id.menu_item_text_view)
         textView.text = item.title
 
-        item.image?.let {
-            val imageView = view.findViewById<ImageView>(R.id.menu_item_imageview)
-            imageView.setImageDrawable(it)
+        val imageView = view.findViewById<ImageView>(R.id.menu_item_imageview)
+        if (item.image != null) {
+            imageView.visibility = View.VISIBLE
+            imageView.setImageDrawable(item.image)
+        } else {
+            imageView.visibility = View.GONE
         }
 
-        item.textColor?.let {
-            textView.setTextColor(it)
-        }
+        textView.setTextColor(item.textColor)
 
-        item.color?.let {
-            view.setCardBackgroundColor(it)
-        }
+        view.setCardBackgroundColor(item.color)
 
-        item.clickListener?.let {
-            view.setOnClickListener(it)
-        }
+        view.setOnClickListener(item.clickListener)
 
-        if (position == 0) {
-            val linearLayout = view.findViewById<LinearLayout>(R.id.linearlayout)
-            LayoutInflater.from(linearLayout.context).inflate(R.layout.textview_layout, linearLayout, true)
+        val description = view.findViewById<TextView>(R.id.description_textview)
+        if (item.hasDescription) {
+            description.text = item.description
+            description.visibility = View.VISIBLE
+        } else {
+            description.visibility = View.GONE
         }
 
     }

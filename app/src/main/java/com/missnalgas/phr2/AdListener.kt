@@ -24,6 +24,7 @@ class AdListener{
         override fun onRewardedAdFailedToLoad(error: LoadAdError?) {
             super.onRewardedAdFailedToLoad(error)
             Toast.makeText(activity.baseContext, "We couldn't find any Ad :(", Toast.LENGTH_SHORT).show()
+            Log.i("asddsa", "Error: $error")
             MenuFragment.isShowingAdd = false
         }
     }

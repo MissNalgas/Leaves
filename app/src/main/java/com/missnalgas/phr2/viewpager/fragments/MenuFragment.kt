@@ -21,6 +21,7 @@ import com.missnalgas.phr2.R
 import com.missnalgas.phr2.menu.MenuSpanSizeLookup
 import com.missnalgas.phr2.menu.PMenuItem
 import com.missnalgas.phr2.menu.recyclerview.MenuAdapter
+import com.missnalgas.phr2.phrase.Phrase
 
 class MenuFragment : Fragment() {
 
@@ -28,7 +29,9 @@ class MenuFragment : Fragment() {
         var isShowingAdd = false
     }
 
-    private val items = ArrayList<PMenuItem>()
+    private val items = Array(5){
+        PMenuItem("Empty")
+    }
 
     private fun loadMenu() {
         val showAdd = PMenuItem("Show add", 2)
@@ -37,16 +40,18 @@ class MenuFragment : Fragment() {
             if (!isShowingAdd) {
                 isShowingAdd = true
                 Toast.makeText(context, "Getting add...", Toast.LENGTH_SHORT).show()
-                rewardedAd = RewardedAd(context, "ca-app-pub-3940256099942544/5224354917")
+                rewardedAd = RewardedAd(context, "ca-app-pub-7933650770519707/4469011900")
                 val activity = activity as AppCompatActivity
                 rewardedAd.loadAd(AdRequest.Builder().build(), AdListener.AddLoadCallback(rewardedAd, activity))
             }
 
         }
-        items.add(showAdd)
+        showAdd.hasDescription = true
+        showAdd.description = "Watch an Ad to support a hungry student."
+        items[0] = (showAdd)
 
-        items.add(PMenuItem("About"))
-        items.add(PMenuItem("Version"))
+        items[1] = (PMenuItem("About"))
+        items[2] = (PMenuItem("Version"))
 
         val addPhrase = PMenuItem("Add Phrase", 2, Color.parseColor("#dd3218"))
         addPhrase.textColor = Color.WHITE
@@ -56,7 +61,7 @@ class MenuFragment : Fragment() {
             intent.data = Uri.parse("https://mssnapplications.com/phr/")
             startActivity(intent)
         }
-        items.add(addPhrase)
+        items[3] = (addPhrase)
 
         val github = PMenuItem("Go to GitHub", 2, Color.BLACK)
         github.image = context?.getDrawable(R.drawable.github_white)
@@ -66,7 +71,7 @@ class MenuFragment : Fragment() {
             intent.data = Uri.parse("https://github.com/MissNalgas/phr2")
             startActivity(intent)
         }
-        items.add(github)
+        items[4] = (github)
     }
 
     private lateinit var rewardedAd : RewardedAd
@@ -91,6 +96,7 @@ class MenuFragment : Fragment() {
             recyclerview.setHasFixedSize(true)
             val layoutManager = GridLayoutManager(context, 2)
             layoutManager.spanSizeLookup = MenuSpanSizeLookup(items)
+            recyclerview.setHasFixedSize(true)
             recyclerview.layoutManager = layoutManager
             recyclerview.adapter = adapter
         }
