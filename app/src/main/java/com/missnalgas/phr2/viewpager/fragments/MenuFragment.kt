@@ -4,24 +4,24 @@ import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.rewarded.RewardedAd
+import com.google.android.material.snackbar.Snackbar
 import com.missnalgas.phr2.AdListener
 import com.missnalgas.phr2.R
 import com.missnalgas.phr2.menu.MenuSpanSizeLookup
 import com.missnalgas.phr2.menu.PMenuItem
 import com.missnalgas.phr2.menu.recyclerview.MenuAdapter
-import com.missnalgas.phr2.phrase.Phrase
 
 class MenuFragment : Fragment() {
 
@@ -34,7 +34,7 @@ class MenuFragment : Fragment() {
     }
 
     private fun loadMenu() {
-        val showAdd = PMenuItem("Show add", 2)
+        val showAdd = PMenuItem("Watch Ad", 2)
         showAdd.setOnClickListener {
 
             if (!isShowingAdd) {
@@ -50,8 +50,23 @@ class MenuFragment : Fragment() {
         showAdd.description = "Watch an Ad to support a hungry student."
         items[0] = (showAdd)
 
-        items[1] = (PMenuItem("About"))
-        items[2] = (PMenuItem("Version"))
+        val about = PMenuItem("About")
+        about.setOnClickListener {
+            view?.let {
+                Snackbar.make(it, "Brought to you thanks to MssnApps", Snackbar.LENGTH_SHORT).show()
+            }
+        }
+        items[1] = (about)
+        val version = PMenuItem("Version")
+        val sVersion = "1.0.0"
+        version.setOnClickListener {
+            view?.let {
+                Snackbar.make(it, "Version $sVersion", Snackbar.LENGTH_SHORT).show()
+            }
+        }
+        version.description = sVersion
+        version.hasDescription = true
+        items[2] = (version)
 
         val addPhrase = PMenuItem("Add Phrase", 2, Color.parseColor("#dd3218"))
         addPhrase.textColor = Color.WHITE
@@ -64,7 +79,10 @@ class MenuFragment : Fragment() {
         items[3] = (addPhrase)
 
         val github = PMenuItem("Go to GitHub", 2, Color.BLACK)
-        github.image = context?.getDrawable(R.drawable.github_white)
+        context?.let {
+            github.image = AppCompatResources.getDrawable(it, R.drawable.github_white)
+        }
+
         github.textColor = Color.WHITE
         github.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
@@ -88,7 +106,6 @@ class MenuFragment : Fragment() {
 
         loadMenu()
 
-        Log.i("asddsa", "onActivityCreated")
 
         view?.let {view ->
             val recyclerview = view.findViewById<RecyclerView>(R.id.menu_recyclerview)

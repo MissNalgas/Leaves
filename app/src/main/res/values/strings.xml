@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Phr2</string>
+    <string name="app_name">Phrases</string>
     <string name="connection_failure">Connection failure! :(</string>
 </resources>
