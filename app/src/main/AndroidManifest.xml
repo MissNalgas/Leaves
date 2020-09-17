@@ -25,6 +25,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"/>
+
+        <receiver android:name=".services.NotificationReceiver" />
     </application>
 
 </manifest>

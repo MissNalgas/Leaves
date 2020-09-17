@@ -6,7 +6,7 @@
     <item
         android:width="220px"
         android:height="220px"
-        android:drawable="@drawable/phr"
+        android:drawable="@drawable/leaf"
         android:gravity="center" />
 
     <item

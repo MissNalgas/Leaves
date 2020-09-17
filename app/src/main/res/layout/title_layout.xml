@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:id="@+id/phrase_title"
         android:gravity="center"
-        android:textColor="@color/colorText"
+        android:textColor="@color/colorTextLang"
         android:textSize="45dp"
         android:fontFamily="@font/lobster"/>
 

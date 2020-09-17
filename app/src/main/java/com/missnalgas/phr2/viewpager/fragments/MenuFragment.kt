@@ -1,5 +1,6 @@
 package com.missnalgas.phr2.viewpager.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
@@ -33,8 +34,8 @@ class MenuFragment : Fragment() {
         PMenuItem("Empty")
     }
 
-    private fun loadMenu() {
-        val showAdd = PMenuItem("Watch Ad", 2)
+    private fun loadMenu(context : Context) {
+        val showAdd = PMenuItem(context.getString(R.string.watch_ad), 2)
         showAdd.setOnClickListener {
 
             if (!isShowingAdd) {
@@ -47,17 +48,17 @@ class MenuFragment : Fragment() {
 
         }
         showAdd.hasDescription = true
-        showAdd.description = "Watch an Ad to support a hungry student."
+        showAdd.description = context.getString(R.string.watch_ad_description)
         items[0] = (showAdd)
 
-        val about = PMenuItem("About")
+        val about = PMenuItem(context.getString(R.string.about))
         about.setOnClickListener {
             view?.let {
-                Snackbar.make(it, "Brought to you thanks to MssnApps", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(it, context.getString(R.string.about_snackbar), Snackbar.LENGTH_SHORT).show()
             }
         }
         items[1] = (about)
-        val version = PMenuItem("Version")
+        val version = PMenuItem(context.getString(R.string.about))
         val sVersion = "1.0.0"
         version.setOnClickListener {
             view?.let {
@@ -68,9 +69,9 @@ class MenuFragment : Fragment() {
         version.hasDescription = true
         items[2] = (version)
 
-        val addPhrase = PMenuItem("Add Phrase", 2, Color.parseColor("#dd3218"))
-        addPhrase.textColor = Color.WHITE
-        addPhrase.image = ContextCompat.getDrawable(context!!, R.drawable.phr)
+        val addPhrase = PMenuItem(context.getString(R.string.post_phrase), 2, context.getColor(R.color.colorMainB))
+        addPhrase.textColor = Color.BLACK
+        addPhrase.image = ContextCompat.getDrawable(context!!, R.drawable.leaf)
         addPhrase.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse("https://mssnapplications.com/phr/")
@@ -78,7 +79,7 @@ class MenuFragment : Fragment() {
         }
         items[3] = (addPhrase)
 
-        val github = PMenuItem("Go to GitHub", 2, Color.BLACK)
+        val github = PMenuItem(context.getString(R.string.go_to_github), 2, Color.BLACK)
         context?.let {
             github.image = AppCompatResources.getDrawable(it, R.drawable.github_white)
         }
@@ -104,7 +105,7 @@ class MenuFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        loadMenu()
+        context?.let {context -> loadMenu(context) }
 
 
         view?.let {view ->

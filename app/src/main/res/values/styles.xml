@@ -10,7 +10,7 @@
 
     <style name="SplashscreenTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:background">@drawable/splash_screen</item>
-        <item name="colorPrimaryDark">@color/colorMainRedA</item>
+        <item name="colorPrimaryDark">@color/colorMainA</item>
     </style>
 
 </resources>

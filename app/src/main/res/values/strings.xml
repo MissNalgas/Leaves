@@ -1,4 +1,13 @@
 <resources>
-    <string name="app_name">Phrases</string>
+    <string name="app_name">Leaves</string>
     <string name="connection_failure">Connection failure! :(</string>
+    <string name="watch_ad">Watch Ad</string>
+    <string name="about">About</string>
+    <string name="version">Version</string>
+    <string name="post_phrase">Post a Phrase</string>
+    <string name="go_to_github">Go to GitHub</string>
+    <string name="watch_ad_description">Watch an Ad in order to support a hungry student.</string>
+    <string name="about_snackbar">Brought to you thanks to MssnApps</string>
+    <string name="channel_notification_name">Phrases notifications</string>
+    <string name="channel_notification_description">A new phrase everyday</string>
 </resources>
