@@ -6,13 +6,13 @@
     <item
         android:width="220px"
         android:height="220px"
-        android:drawable="@drawable/leaf"
+        android:drawable="@drawable/leaves3"
         android:gravity="center" />
 
     <item
         android:width="440px"
         android:height="220px"
-        android:drawable="@drawable/mssnapps"
+        android:drawable="@drawable/mssnapps_white"
         android:gravity="bottom|center_horizontal"/>
 
 </layer-list>

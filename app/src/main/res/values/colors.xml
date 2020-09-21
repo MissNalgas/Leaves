@@ -9,7 +9,7 @@
     <color name="colorMainRedA">#dd3218</color>
     <color name="colorMainRedB">#c7342f</color>
     <color name="colorMainRedC">#ed392c</color>
-    <color name="colorMainA">#b5eec8</color>
-    <color name="colorMainB">#b0e3d2</color>
-    <color name="colorMainC">#91d1b3</color>
+    <color name="colorMainA">#292929</color>
+    <color name="colorMainB">#191919</color>
+    <color name="colorMainC">#2B2B2B</color>
 </resources>

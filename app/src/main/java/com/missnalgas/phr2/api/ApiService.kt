@@ -11,7 +11,7 @@ import com.missnalgas.phr2.phrase.Phrase
 
 object ApiService {
 
-    val URL = "https://mssnapplications.com/phr/get/"
+    val URL = "https://mssnapplications.com/leaves/get/"
     var data : Phrase? = null
 
 

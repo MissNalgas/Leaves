@@ -19,9 +19,9 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     private val fragments : ArrayList<FragmentStyle> by lazy {
         val array = ArrayList<FragmentStyle>()
-        array.add(FragmentStyle(intArrayOf(Color.parseColor("#b5eec8"), Color.parseColor("#b0e3d2"), Color.parseColor("#91d1b3"))))
-        array.add(FragmentStyle(intArrayOf(Color.parseColor("#639373"), Color.parseColor("#608c7e"), Color.parseColor("#5e987d"))))
-        array.add(FragmentStyle(intArrayOf(Color.parseColor("#3b6549"), Color.parseColor("#40695c"), Color.parseColor("#2f5744"))))
+        array.add(FragmentStyle(intArrayOf(Color.parseColor("#dd3218"), Color.parseColor("#c7342f"), Color.parseColor("#ed392c"))))
+        array.add(FragmentStyle(intArrayOf(Color.parseColor("#372eb8"), Color.parseColor("#163a86"), Color.parseColor("#2a1da6"))))
+        array.add(FragmentStyle(intArrayOf(Color.parseColor("#1f1f1f"), Color.parseColor("#262626"), Color.parseColor("#1f1f1f"))))
         return@lazy array
     }
 

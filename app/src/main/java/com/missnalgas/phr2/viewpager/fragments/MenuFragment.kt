@@ -69,12 +69,12 @@ class MenuFragment : Fragment() {
         version.hasDescription = true
         items[2] = (version)
 
-        val addPhrase = PMenuItem(context.getString(R.string.post_phrase), 2, context.getColor(R.color.colorMainB))
+        val addPhrase = PMenuItem(context.getString(R.string.post_phrase), 2)
         addPhrase.textColor = Color.BLACK
-        addPhrase.image = ContextCompat.getDrawable(context!!, R.drawable.leaf)
+        addPhrase.image = ContextCompat.getDrawable(context!!, R.drawable.leaves3)
         addPhrase.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse("https://mssnapplications.com/phr/")
+            intent.data = Uri.parse("https://mssnapplications.com/leaves/")
             startActivity(intent)
         }
         items[3] = (addPhrase)
@@ -87,7 +87,7 @@ class MenuFragment : Fragment() {
         github.textColor = Color.WHITE
         github.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse("https://github.com/MissNalgas/phr2")
+            intent.data = Uri.parse("https://github.com/MissNalgas/Leaves")
             startActivity(intent)
         }
         items[4] = (github)
