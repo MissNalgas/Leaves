@@ -1,5 +1,5 @@
 # Leaves
-![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)
+![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?) ![Version](https://img.shields.io/github/manifest-json/v/MissNalgas/Leaves?style=plastic)
 
 ![Leaves Logo](/images/leaf.png)
 
