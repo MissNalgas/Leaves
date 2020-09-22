@@ -1,4 +1,5 @@
 # Leaves
+![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)
 
 ![Leaves Logo](/images/leaf.png)
 
@@ -20,7 +21,8 @@ Anyone can make a Leave and the app shows a new one everyday so we can learn som
 ## Installation
 
 You can clone the repository using:
-> $ git clone https://github.com/missnalgas/leaves.git
+
+`$ git clone https://github.com/missnalgas/leaves.git`
 
 You can intall Leaves on your android device directly from the [PlayStore](https://play.google.com/store/apps/details?id=com.missnalgas.phr2).
 
