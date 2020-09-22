@@ -59,4 +59,4 @@ If this code help you in anyway you can always buy me cup of coffee. Very thank 
 
 [Paypal](https://paypal.me/aragon997)
 
-You can text me your suggestions at [mssnapplications@gmail.com](mssnapplications@gmail.com)
+You can text me your suggestions at [mssnapplications@gmail.com](mailto:mssnapplications@gmail.com)
