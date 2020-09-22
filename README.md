@@ -1,5 +1,5 @@
 # Leaves
-![MIT License](https://img.shields.io/github/license/missnalgas/leaves) ![Version](https://img.shields.io/github/manifest-json/v/MissNalgas/Leaves?style=plastic)
+![MIT License](https://img.shields.io/github/license/missnalgas/leaves) ![Version](https://img.shields.io/github/manifest-json/v/MissNalgas/Leaves?style=plastic) [![Paypal](https://img.shields.io/badge/Contribute-Paypal-blue)](https://paypal.me/aragon997)
 
 ![Leaves Logo](/images/leaf.png)
 
