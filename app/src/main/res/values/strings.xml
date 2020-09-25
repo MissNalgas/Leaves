@@ -1,4 +1,5 @@
 <resources>
+    <string name="notification_channel_default">com.missnalgas.phr2.main_channel_id</string>
     <string name="app_name">Leaves</string>
     <string name="connection_failure">Connection failure! :(</string>
     <string name="watch_ad">Watch Ad</string>

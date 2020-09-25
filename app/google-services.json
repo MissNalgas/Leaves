@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "181854748849",
+    "firebase_url": "https://leaves-7b193.firebaseio.com",
+    "project_id": "leaves-7b193",
+    "storage_bucket": "leaves-7b193.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181854748849:android:478d0afb714f72e5eaa290",
+        "android_client_info": {
+          "package_name": "com.missnalgas.phr2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "181854748849-brsfb7lf38ju8683b01f4tsvghvcse9m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaiZE48c3_mv9iMA4XgmCZhNHNElFRVQI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "181854748849-brsfb7lf38ju8683b01f4tsvghvcse9m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

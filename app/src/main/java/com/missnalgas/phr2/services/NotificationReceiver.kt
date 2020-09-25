@@ -15,27 +15,10 @@ import com.missnalgas.phr2.splashscreen.SplashscreenActivity
 
 class NotificationReceiver : BroadcastReceiver() {
 
-    private val NOT_ID = 1001
-
-    private fun showNotification(context : Context, channel_id : String, data : Phrase) {
-        val intent = Intent(context, SplashscreenActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
-
-        val builder = NotificationCompat.Builder(context, channel_id)
-        builder.setSmallIcon(R.drawable.notification_icon)
-        builder.color = Color.GREEN
-        builder.setContentTitle(data.title)
-        builder.setContentText(data.content)
-        builder.setAutoCancel(true)
-        builder.setContentIntent(pendingIntent)
-
-        NotificationManagerCompat.from(context).notify(NOT_ID, builder.build())
-    }
-
     private val apiCallback : ApiService.ApiCallback by lazy {
         object : ApiService.ApiCallback {
             override fun response(phrase: Phrase, context: Context) {
-                showNotification(context, MainActivity.CHANNEL_ID, phrase)
+                NotificationService.notificationFromPhrase(context, MainActivity.CHANNEL_ID, phrase)
             }
 
         }

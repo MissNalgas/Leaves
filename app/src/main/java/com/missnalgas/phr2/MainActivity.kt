@@ -1,29 +1,24 @@
 package com.missnalgas.phr2
 
-import android.app.AlarmManager
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
+import android.app.*
 import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.gms.ads.MobileAds
+import com.google.firebase.messaging.FirebaseMessaging
 import com.missnalgas.phr2.api.ApiService
 import com.missnalgas.phr2.phrase.Phrase
-import com.missnalgas.phr2.services.NotificationReceiver
 import com.missnalgas.phr2.viewmodel.MainViewModel
 import com.missnalgas.phr2.viewmodel.ViewModelFactory
 import com.missnalgas.phr2.viewpager.ViewAdapter
-import java.util.*
 
 class MainActivity :  AppCompatActivity() {
 
     companion object {
-        val CHANNEL_ID = "com.missnalgas.phr.main_channel_id"
+        lateinit  var CHANNEL_ID : String
     }
 
     private lateinit var viewModelFactory : ViewModelFactory
@@ -61,31 +56,18 @@ class MainActivity :  AppCompatActivity() {
         notificationManager.createNotificationChannel(mChannel)
     }
 
-    private fun startAlarm(context : Context) {
-        val intent = Intent(context, NotificationReceiver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
 
-        val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
-
-        val currentTime = Calendar.getInstance()
-        currentTime.set(Calendar.HOUR_OF_DAY, 9)
-        currentTime.set(Calendar.MINUTE, 0)
-        currentTime.set(Calendar.SECOND, 0)
-
-        if (currentTime.before(Calendar.getInstance())) {
-            currentTime.add(Calendar.DAY_OF_YEAR, 1)
-        }
-
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, currentTime.timeInMillis, 1000*3600*24, pendingIntent)
-        //alarmManager.setExact(AlarmManager.RTC_WAKEUP, Calendar.getInstance().timeInMillis, pendingIntent)
+    private fun subscribeToGeneralTopic() {
+        FirebaseMessaging.getInstance().subscribeToTopic("general")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        CHANNEL_ID = baseContext.getString(R.string.notification_channel_default)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        subscribeToGeneralTopic()
 
         createNotificationChannel(this, CHANNEL_ID)
-        startAlarm(this)
 
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
@@ -102,6 +84,7 @@ class MainActivity :  AppCompatActivity() {
         MobileAds.initialize(this)
 
     }
+
 
 
     private fun loadObs() {

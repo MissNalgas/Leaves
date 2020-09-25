@@ -26,6 +26,16 @@
         <activity android:name=".MainActivity"/>
 
         <receiver android:name=".services.NotificationReceiver" />
+
+        <service android:name=".messages.firebase.FirebaseMessagingService"
+            android:exported="false">
+            <meta-data android:name="com.google.firebase.messaging.default_notification_channel_id"
+                android:value="@string/notification_channel_default"/>
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

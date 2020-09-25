@@ -71,7 +71,7 @@ class MenuFragment : Fragment() {
 
         val addPhrase = PMenuItem(context.getString(R.string.post_phrase), 2)
         addPhrase.textColor = Color.BLACK
-        addPhrase.image = ContextCompat.getDrawable(context!!, R.drawable.leaves3)
+        addPhrase.image = ContextCompat.getDrawable(context!!, R.drawable.leaves_logo)
         addPhrase.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse("https://mssnapplications.com/leaves/")
