@@ -12,7 +12,8 @@ import androidx.fragment.app.Fragment
 import com.missnalgas.phr2.R
 import com.missnalgas.phr2.phrase.Phrase
 
-class ContentFragment(@NonNull val data : Phrase) : Fragment() {
+class ContentFragment() : Fragment() {
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,13 +25,13 @@ class ContentFragment(@NonNull val data : Phrase) : Fragment() {
         super.onActivityCreated(savedInstanceState)
         view?.let { view ->
             val tvContent = view.findViewById<TextView>(R.id.phrase_content)
-            tvContent.text = data.content
+            tvContent.text = Phrase.content
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
                 tvContent.justificationMode = LineBreaker.JUSTIFICATION_MODE_INTER_WORD
             }
 
             val tvI = view.findViewById<RelativeLayout>(R.id.view_i)
-            tvI.tooltipText = data.author
+            tvI.tooltipText = Phrase.author
         }
     }
 

@@ -2,13 +2,11 @@ package com.missnalgas.phr2.messages.firebase
 
 import android.app.ActivityManager
 import android.content.Context
-import android.util.Log
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.missnalgas.phr2.MainActivity
 import com.missnalgas.phr2.api.ApiService
 import com.missnalgas.phr2.messages.Messages
-import com.missnalgas.phr2.phrase.Phrase
 import com.missnalgas.phr2.services.NotificationService
 
 class FirebaseMessagingService : FirebaseMessagingService() {
@@ -21,9 +19,14 @@ class FirebaseMessagingService : FirebaseMessagingService() {
     private fun onNewLeaf() {
 
         val callback = object : ApiService.ApiCallback {
-            override fun response(phrase: Phrase, context: Context) {
-                if (!isForeground())
-                    NotificationService.notificationFromPhrase(context, MainActivity.CHANNEL_ID, phrase)
+            override fun onSuccess(context: Context) {
+                if (!isForeground()) {
+                    NotificationService.notificationFromPhrase(context, MainActivity.CHANNEL_ID)
+                }
+            }
+
+            override fun onError(context: Context) {
+                /*EMPTY*/
             }
 
         }
@@ -43,7 +46,7 @@ class FirebaseMessagingService : FirebaseMessagingService() {
     }
 
     private fun onError() {
-        Log.i("asddsa", "Unkown message")
+        /*EMPTY*/
     }
 
     private fun isForeground() : Boolean {

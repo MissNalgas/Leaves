@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.missnalgas.phr2.R
 import com.missnalgas.phr2.menu.PMenuItem
 
-class MenuAdapter(private val items : Array<PMenuItem>) : RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
+class MenuAdapter(private val items : List<PMenuItem>) : RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: CardView) : RecyclerView.ViewHolder(itemView)
 

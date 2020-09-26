@@ -1,3 +1,8 @@
 package com.missnalgas.phr2.phrase
 
-class Phrase(val title: String, val content : String, val author : String)
+object Phrase {
+    var title = "No connection"
+    var content = "Seems like we had some troubles connecting."
+    var author = "MSSN"
+    override fun toString() = title
+}

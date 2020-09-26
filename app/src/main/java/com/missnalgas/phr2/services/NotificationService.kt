@@ -17,20 +17,20 @@ class NotificationService {
     companion object {
 
         private fun getID() : Int {
-            val calendar = Calendar.getInstance()
-            val sId = SimpleDateFormat("ddHHmmss", Locale.US).format(calendar)
+            val now = Date()
+            val sId = SimpleDateFormat("ddHHmmss", Locale.US).format(now)
             return Integer.parseInt(sId)
         }
 
-        fun notificationFromPhrase(context : Context, channel_id : String, data : Phrase) {
+        fun notificationFromPhrase(context : Context, channel_id : String) {
             val intent = Intent(context, SplashscreenActivity::class.java)
             val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
 
             val builder = NotificationCompat.Builder(context, channel_id)
             builder.setSmallIcon(R.drawable.notification_icon)
             builder.color = Color.RED
-            builder.setContentTitle(data.title)
-            builder.setContentText(data.content)
+            builder.setContentTitle(Phrase.title)
+            builder.setContentText(Phrase.content)
             builder.setAutoCancel(true)
             builder.setContentIntent(pendingIntent)
 

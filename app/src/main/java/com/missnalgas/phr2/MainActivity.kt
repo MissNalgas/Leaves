@@ -4,13 +4,14 @@ import android.app.*
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.gms.ads.MobileAds
 import com.google.firebase.messaging.FirebaseMessaging
-import com.missnalgas.phr2.api.ApiService
 import com.missnalgas.phr2.phrase.Phrase
+import com.missnalgas.phr2.services.SplashScreenAbstract
 import com.missnalgas.phr2.viewmodel.MainViewModel
 import com.missnalgas.phr2.viewmodel.ViewModelFactory
 import com.missnalgas.phr2.viewpager.ViewAdapter
@@ -21,20 +22,12 @@ class MainActivity :  AppCompatActivity() {
         lateinit  var CHANNEL_ID : String
     }
 
+    private lateinit var viewPager : ViewPager2
     private lateinit var viewModelFactory : ViewModelFactory
     private val viewModel : MainViewModel by lazy {
         return@lazy ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
     }
-    private var data = Phrase("Loading...", "Getting some data for you.", "MSSN")
-
-    private val apiCallback : ApiService.ApiCallback by lazy {
-        object : ApiService.ApiCallback {
-            override fun response(phrase: Phrase, context: Context) {
-                viewModel.fetchData(phrase)
-            }
-
-        }
-    }
+    private lateinit var data: Phrase
 
 
    private val pageChangeCallback : ViewPager2.OnPageChangeCallback by lazy {
@@ -64,27 +57,35 @@ class MainActivity :  AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         CHANNEL_ID = baseContext.getString(R.string.notification_channel_default)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        subscribeToGeneralTopic()
-
-        createNotificationChannel(this, CHANNEL_ID)
 
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
+        setContentView(R.layout.activity_main)
+        viewPager = this.findViewById(R.id.main_viewpager)
+        viewPager.adapter = ViewAdapter(this)
+        viewPager.registerOnPageChangeCallback(pageChangeCallback)
+
+        subscribeToGeneralTopic()
+        createNotificationChannel(this, CHANNEL_ID)
+
         viewModelFactory = ViewModelFactory(application = application)
 
-        val viewpager = this.findViewById<ViewPager2>(R.id.main_viewpager)
-        viewpager.adapter = ViewAdapter(this, data)
-        viewpager.registerOnPageChangeCallback(pageChangeCallback)
-
         loadObs()
-
-        ApiService.fetchData(this,apiCallback)
 
         MobileAds.initialize(this)
 
     }
 
+
+
+    override fun onResume() {
+        super.onResume()
+        parent?.let {
+            Log.i("asddsa", "parent not null")
+            val par = it as SplashScreenAbstract
+            par.onMainActivityLoaded()
+        }
+    }
 
 
     private fun loadObs() {
@@ -98,7 +99,7 @@ class MainActivity :  AppCompatActivity() {
             phr?.let {
                 data = phr
                 vp.adapter?.let {_ ->
-                    val viewAdapter = ViewAdapter(this, data)
+                    val viewAdapter = ViewAdapter(this)
                     vp.adapter = viewAdapter
                     vp.adapter?.notifyDataSetChanged()
                 }

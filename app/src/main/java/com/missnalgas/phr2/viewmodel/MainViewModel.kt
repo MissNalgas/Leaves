@@ -2,16 +2,12 @@ package com.missnalgas.phr2.viewmodel
 
 import android.animation.ArgbEvaluator
 import android.app.Application
-import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.android.volley.Request
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.Volley
 import com.missnalgas.phr2.phrase.Phrase
 import kotlin.math.floor
 
@@ -51,15 +47,12 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     }
 
 
-    fun fetchData(phr : Phrase) {
-        onDataFetch.postValue(phr)
-    }
 
     val backgroundColorLiveData : LiveData<GradientDrawable?> by lazy {
         val argbEvaluator = ArgbEvaluator()
         return@lazy Transformations.map(onPageChangeListener) { offsetsum ->
             offsetsum?.let {
-                val position = floor(offsetsum).toInt()
+                val position = if (floor(offsetsum) > FRAGMENTS_COUNT-1) FRAGMENTS_COUNT-1 else floor(offsetsum).toInt()
                 val offset = offsetsum - position
                 val prevColor = fragments[position].colors
 

@@ -6,11 +6,19 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorSecondary">@color/colorText</item>
+
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowEnterTransition">@transition/transition_long</item>
+        <item name="android:windowExitTransition">@transition/transition_long</item>
     </style>
 
     <style name="SplashscreenTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:background">@drawable/splash_screen</item>
         <item name="colorPrimaryDark">@color/colorMainA</item>
+
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowEnterTransition">@transition/transition_long</item>
+        <item name="android:windowExitTransition">@transition/transition_long</item>
     </style>
 
 </resources>

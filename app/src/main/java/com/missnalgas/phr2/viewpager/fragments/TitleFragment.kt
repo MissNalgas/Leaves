@@ -10,7 +10,8 @@ import androidx.fragment.app.Fragment
 import com.missnalgas.phr2.R
 import com.missnalgas.phr2.phrase.Phrase
 
-class TitleFragment(@NonNull val data : Phrase) : Fragment() {
+class TitleFragment() : Fragment() {
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,7 +23,7 @@ class TitleFragment(@NonNull val data : Phrase) : Fragment() {
         super.onActivityCreated(savedInstanceState)
         view?.let { view ->
             val tvTitle = view.findViewById<TextView>(R.id.phrase_title)
-            tvTitle.text = data.title
+            tvTitle.text = Phrase.title
         }
     }
 

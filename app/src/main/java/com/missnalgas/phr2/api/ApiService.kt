@@ -3,7 +3,6 @@ package com.missnalgas.phr2.api
 import android.content.Context
 import android.widget.Toast
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.missnalgas.phr2.R
@@ -14,20 +13,25 @@ object ApiService {
     private const val URL = "https://mssnapplications.com/leaves/get/"
 
 
-    fun fetchData(context : Context, callback : ApiCallback) {
+    fun fetchData(context : Context, callback : ApiCallback?) {
 
         val queue = Volley.newRequestQueue(context)
 
         val request = JsonObjectRequest(Request.Method.GET, URL, null, {
-            val phrase = Phrase(it["title"] as String, it["content"] as String, it["author"] as String)
-            callback.response(phrase, context)
-        }, { Toast.makeText(context, context.getText(R.string.connection_failure), Toast.LENGTH_SHORT).show()})
+            Phrase.title = it["title"] as String
+            Phrase.content = it["content"] as String
+            Phrase.author = it["author"] as String
+            callback?.onSuccess(context)
+        }, {
+            callback?.onError(context)
+        })
 
         queue.add(request)
     }
 
     interface ApiCallback {
-        fun response(phrase : Phrase, context : Context)
+        fun onSuccess(context: Context)
+        fun onError(context: Context)
     }
 
 }

@@ -30,67 +30,76 @@ class MenuFragment : Fragment() {
         var isShowingAdd = false
     }
 
-    private val items = Array(5){
-        PMenuItem("Empty")
-    }
+    private var items : List<PMenuItem>? = null
 
 
     private fun loadMenu(context : Context) {
-        val showAdd = PMenuItem(context.getString(R.string.watch_ad), 2)
-        showAdd.setOnClickListener {
+        items = List(5) { index ->
+            when(index) {
+                0-> PMenuItem.Builder().apply {
 
-            if (!isShowingAdd) {
-                isShowingAdd = true
-                Toast.makeText(context, "Getting add...", Toast.LENGTH_SHORT).show()
-                rewardedAd = RewardedAd(context, "ca-app-pub-7933650770519707/4469011900")
-                val activity = activity as AppCompatActivity
-                rewardedAd.loadAd(AdRequest.Builder().build(), AdListener.AddLoadCallback(rewardedAd, activity))
+                    title = context.getString(R.string.watch_ad)
+                    clickListener = View.OnClickListener {
+                        if (!isShowingAdd) {
+                            isShowingAdd = true
+                            Toast.makeText(context, "Getting add...", Toast.LENGTH_SHORT).show()
+                            rewardedAd = RewardedAd(context, "ca-app-pub-7933650770519707/4469011900")
+                            val activity = activity as AppCompatActivity
+                            rewardedAd.loadAd(AdRequest.Builder().build(), AdListener.AddLoadCallback(rewardedAd, activity))
+                        }
+                    }
+                    hasDescription = true
+                    description = context.getString(R.string.watch_ad_description)
+
+                }.build()
+                1 -> PMenuItem.Builder().apply {
+
+                    title = context.getString(R.string.about)
+                    span = 1
+                    clickListener = View.OnClickListener {
+                        view?.let {
+                            Snackbar.make(it, context.getString(R.string.about_snackbar), Snackbar.LENGTH_SHORT).show()
+                        }
+                    }
+
+                }.build()
+                2 -> PMenuItem.Builder().apply {
+                    title = context.getString(R.string.version)
+                    val packInfo = context.packageManager.getPackageInfo(context.packageName, 0)
+                    val sVersion = packInfo.versionName
+                    span = 1
+                    clickListener = View.OnClickListener {
+                        view?.let {
+                            Snackbar.make(it, "Version $sVersion", Snackbar.LENGTH_SHORT).show()
+                        }
+                    }
+                    hasDescription = true
+                    description = sVersion
+                }.build()
+                3 -> PMenuItem.Builder().apply {
+                    title = context.getString(R.string.post_phrase)
+                    textColor = Color.BLACK
+                    image = ContextCompat.getDrawable(context, R.drawable.leaves_logo)
+                    clickListener = View.OnClickListener {
+                        val intent = Intent(Intent.ACTION_VIEW)
+                        intent.data = Uri.parse("https://mssnapplications.com/leaves/")
+                        startActivity(intent)
+                    }
+                }.build()
+                4 -> PMenuItem.Builder().apply {
+                    title = context.getString(R.string.go_to_github)
+                    color = Color.BLACK
+                    image = AppCompatResources.getDrawable(context, R.drawable.github_white)
+                    textColor = Color.WHITE
+                    clickListener = View.OnClickListener {
+                        val intent = Intent(Intent.ACTION_VIEW)
+                        intent.data = Uri.parse("https://github.com/MissNalgas/Leaves")
+                        startActivity(intent)
+                    }
+                }.build()
+                else -> PMenuItem.Builder().build()
             }
-
         }
-        showAdd.hasDescription = true
-        showAdd.description = context.getString(R.string.watch_ad_description)
-        items[0] = (showAdd)
-
-        val about = PMenuItem(context.getString(R.string.about))
-        about.setOnClickListener {
-            view?.let {
-                Snackbar.make(it, context.getString(R.string.about_snackbar), Snackbar.LENGTH_SHORT).show()
-            }
-        }
-        items[1] = (about)
-        val version = PMenuItem(context.getString(R.string.version))
-        val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
-        val sVersion = packageInfo.versionName
-        version.setOnClickListener {
-            view?.let {
-                Snackbar.make(it, "Version $sVersion", Snackbar.LENGTH_SHORT).show()
-            }
-        }
-        version.description = sVersion
-        version.hasDescription = true
-        items[2] = (version)
-
-        val addPhrase = PMenuItem(context.getString(R.string.post_phrase), 2)
-        addPhrase.textColor = Color.BLACK
-        addPhrase.image = ContextCompat.getDrawable(context, R.drawable.leaves_logo)
-        addPhrase.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse("https://mssnapplications.com/leaves/")
-            startActivity(intent)
-        }
-        items[3] = (addPhrase)
-
-        val github = PMenuItem(context.getString(R.string.go_to_github), 2, Color.BLACK)
-        github.image = AppCompatResources.getDrawable(context, R.drawable.github_white)
-
-        github.textColor = Color.WHITE
-        github.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse("https://github.com/MissNalgas/Leaves")
-            startActivity(intent)
-        }
-        items[4] = (github)
     }
 
     private lateinit var rewardedAd : RewardedAd
@@ -107,16 +116,18 @@ class MenuFragment : Fragment() {
 
         context?.let {context -> loadMenu(context) }
 
-
         view?.let {view ->
-            val recyclerview = view.findViewById<RecyclerView>(R.id.menu_recyclerview)
-            val adapter = MenuAdapter(items)
-            recyclerview.setHasFixedSize(true)
-            val layoutManager = GridLayoutManager(context, 2)
-            layoutManager.spanSizeLookup = MenuSpanSizeLookup(items)
-            recyclerview.setHasFixedSize(true)
-            recyclerview.layoutManager = layoutManager
-            recyclerview.adapter = adapter
+            items?.let {items ->
+                val recyclerview = view.findViewById<RecyclerView>(R.id.menu_recyclerview)
+                val adapter = MenuAdapter(items)
+                recyclerview.setHasFixedSize(true)
+                val layoutManager = GridLayoutManager(context, 2)
+                layoutManager.spanSizeLookup = MenuSpanSizeLookup(items)
+                recyclerview.setHasFixedSize(true)
+                recyclerview.layoutManager = layoutManager
+                recyclerview.adapter = adapter
+            }
+
         }
 
 
