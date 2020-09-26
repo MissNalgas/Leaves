@@ -25,7 +25,7 @@ class MainActivity :  AppCompatActivity() {
     private val viewModel : MainViewModel by lazy {
         return@lazy ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
     }
-    private var data = Phrase("Loading...", "Getting some data for you.", "Mssn")
+    private var data = Phrase("Loading...", "Getting some data for you.", "MSSN")
 
     private val apiCallback : ApiService.ApiCallback by lazy {
         object : ApiService.ApiCallback {

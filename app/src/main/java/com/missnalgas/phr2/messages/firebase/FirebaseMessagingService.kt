@@ -13,8 +13,6 @@ import com.missnalgas.phr2.services.NotificationService
 
 class FirebaseMessagingService : FirebaseMessagingService() {
 
-    private val NOT_ID = 1001
-
     override fun onNewToken(token: String) {
         /*EMPTY*/
     }

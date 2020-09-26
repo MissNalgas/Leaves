@@ -17,12 +17,19 @@ import kotlin.math.floor
 
 class MainViewModel(app: Application) : AndroidViewModel(app) {
 
-    private val fragments : ArrayList<FragmentStyle> by lazy {
-        val array = ArrayList<FragmentStyle>()
-        array.add(FragmentStyle(intArrayOf(Color.parseColor("#3a76ba"), Color.parseColor("#2e5b8f"), Color.parseColor("#274e7a"))))
-        array.add(FragmentStyle(intArrayOf(Color.parseColor("#354d69"), Color.parseColor("#2c3e54"), Color.parseColor("#243345"))))
-        array.add(FragmentStyle(intArrayOf(Color.parseColor("#243040"), Color.parseColor("#212b38"), Color.parseColor("#1a222b"))))
-        return@lazy array
+    companion object {
+        const val FRAGMENTS_COUNT = 3
+    }
+
+    private val fragments : List<FragmentStyle> by lazy {
+        return@lazy List(FRAGMENTS_COUNT){
+            when(it) {
+                0 -> FragmentStyle(intArrayOf(Color.parseColor("#FF8A65"), Color.parseColor("#FF7043"), Color.parseColor("#FF5722")))
+                1 -> FragmentStyle(intArrayOf(Color.parseColor("#009688"), Color.parseColor("#00897B"), Color.parseColor("#00796B")))
+                2 -> FragmentStyle(intArrayOf(Color.parseColor("#00796B"), Color.parseColor("#00695C"), Color.parseColor("#004D40")))
+                else -> FragmentStyle()
+            }
+        }
     }
 
     private val onPageChangeListener : MutableLiveData<Float?> by lazy {

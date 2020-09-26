@@ -24,14 +24,13 @@ class AdListener{
         override fun onRewardedAdFailedToLoad(error: LoadAdError?) {
             super.onRewardedAdFailedToLoad(error)
             Toast.makeText(activity.baseContext, "We couldn't find any Ad :(", Toast.LENGTH_SHORT).show()
-            Log.i("asddsa", "Error: $error")
             MenuFragment.isShowingAdd = false
         }
     }
 
     class AdCallback : RewardedAdCallback() {
         override fun onUserEarnedReward(reward: RewardItem) {
-            Log.i("asddsa", "Rewarded ${reward.amount} ${reward.type}")
+            /*TODO reward system*/
         }
     }
 

@@ -8,7 +8,7 @@
     <string name="post_phrase">Post a Phrase</string>
     <string name="go_to_github">Go to GitHub</string>
     <string name="watch_ad_description">Watch an Ad in order to support a hungry student.</string>
-    <string name="about_snackbar">Brought to you thanks to MssnApps</string>
+    <string name="about_snackbar">Brought to you by MssnApps</string>
     <string name="channel_notification_name">Phrases notifications</string>
     <string name="channel_notification_description">A new phrase everyday</string>
 </resources>

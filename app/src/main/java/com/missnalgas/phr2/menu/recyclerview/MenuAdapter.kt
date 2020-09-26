@@ -25,7 +25,7 @@ class MenuAdapter(private val items : Array<PMenuItem>) : RecyclerView.Adapter<M
         val item = items[position]
 
         val view  = holder.itemView as CardView
-        view.radius = 25.0f
+        view.radius = 60.0f
 
         val textView = view.findViewById<TextView>(R.id.menu_item_text_view)
         textView.text = item.title

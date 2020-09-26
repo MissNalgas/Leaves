@@ -9,16 +9,17 @@ import androidx.core.app.NotificationManagerCompat
 import com.missnalgas.phr2.R
 import com.missnalgas.phr2.phrase.Phrase
 import com.missnalgas.phr2.splashscreen.SplashscreenActivity
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NotificationService {
 
     companion object {
 
-        var notification_id = 1001
-
         private fun getID() : Int {
-            notification_id.inc()
-            return notification_id
+            val calendar = Calendar.getInstance()
+            val sId = SimpleDateFormat("ddHHmmss", Locale.US).format(calendar)
+            return Integer.parseInt(sId)
         }
 
         fun notificationFromPhrase(context : Context, channel_id : String, data : Phrase) {

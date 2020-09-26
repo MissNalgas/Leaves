@@ -11,8 +11,7 @@ import com.missnalgas.phr2.phrase.Phrase
 
 object ApiService {
 
-    val URL = "https://mssnapplications.com/leaves/get/"
-    var data : Phrase? = null
+    private const val URL = "https://mssnapplications.com/leaves/get/"
 
 
     fun fetchData(context : Context, callback : ApiCallback) {

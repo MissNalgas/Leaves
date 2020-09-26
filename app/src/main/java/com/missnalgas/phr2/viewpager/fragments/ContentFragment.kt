@@ -1,7 +1,7 @@
 package com.missnalgas.phr2.viewpager.fragments
 
+import android.graphics.text.LineBreaker
 import android.os.Bundle
-import android.text.Layout.JUSTIFICATION_MODE_INTER_WORD
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,10 +25,12 @@ class ContentFragment(@NonNull val data : Phrase) : Fragment() {
         view?.let { view ->
             val tvContent = view.findViewById<TextView>(R.id.phrase_content)
             tvContent.text = data.content
-            tvContent.justificationMode = JUSTIFICATION_MODE_INTER_WORD
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+                tvContent.justificationMode = LineBreaker.JUSTIFICATION_MODE_INTER_WORD
+            }
 
-            val iview = view.findViewById<RelativeLayout>(R.id.view_i)
-            iview.tooltipText = data.author
+            val tvI = view.findViewById<RelativeLayout>(R.id.view_i)
+            tvI.tooltipText = data.author
         }
     }
 

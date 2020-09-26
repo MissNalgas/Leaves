@@ -34,6 +34,7 @@ class MenuFragment : Fragment() {
         PMenuItem("Empty")
     }
 
+
     private fun loadMenu(context : Context) {
         val showAdd = PMenuItem(context.getString(R.string.watch_ad), 2)
         showAdd.setOnClickListener {
@@ -58,8 +59,9 @@ class MenuFragment : Fragment() {
             }
         }
         items[1] = (about)
-        val version = PMenuItem(context.getString(R.string.about))
-        val sVersion = "1.0.0"
+        val version = PMenuItem(context.getString(R.string.version))
+        val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
+        val sVersion = packageInfo.versionName
         version.setOnClickListener {
             view?.let {
                 Snackbar.make(it, "Version $sVersion", Snackbar.LENGTH_SHORT).show()
@@ -71,7 +73,7 @@ class MenuFragment : Fragment() {
 
         val addPhrase = PMenuItem(context.getString(R.string.post_phrase), 2)
         addPhrase.textColor = Color.BLACK
-        addPhrase.image = ContextCompat.getDrawable(context!!, R.drawable.leaves_logo)
+        addPhrase.image = ContextCompat.getDrawable(context, R.drawable.leaves_logo)
         addPhrase.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse("https://mssnapplications.com/leaves/")
@@ -80,9 +82,7 @@ class MenuFragment : Fragment() {
         items[3] = (addPhrase)
 
         val github = PMenuItem(context.getString(R.string.go_to_github), 2, Color.BLACK)
-        context?.let {
-            github.image = AppCompatResources.getDrawable(it, R.drawable.github_white)
-        }
+        github.image = AppCompatResources.getDrawable(context, R.drawable.github_white)
 
         github.textColor = Color.WHITE
         github.setOnClickListener {
