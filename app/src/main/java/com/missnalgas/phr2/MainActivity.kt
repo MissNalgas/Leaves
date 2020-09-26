@@ -4,14 +4,12 @@ import android.app.*
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.WindowManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.gms.ads.MobileAds
 import com.google.firebase.messaging.FirebaseMessaging
 import com.missnalgas.phr2.phrase.Phrase
-import com.missnalgas.phr2.services.SplashScreenAbstract
 import com.missnalgas.phr2.viewmodel.MainViewModel
 import com.missnalgas.phr2.viewmodel.ViewModelFactory
 import com.missnalgas.phr2.viewpager.ViewAdapter
@@ -74,17 +72,6 @@ class MainActivity :  AppCompatActivity() {
 
         MobileAds.initialize(this)
 
-    }
-
-
-
-    override fun onResume() {
-        super.onResume()
-        parent?.let {
-            Log.i("asddsa", "parent not null")
-            val par = it as SplashScreenAbstract
-            par.onMainActivityLoaded()
-        }
     }
 
 
