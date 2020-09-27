@@ -20,6 +20,7 @@ import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.material.snackbar.Snackbar
 import com.missnalgas.phr2.AdListener
 import com.missnalgas.phr2.R
+import com.missnalgas.phr2.api.Leaves
 import com.missnalgas.phr2.menu.MenuSpanSizeLookup
 import com.missnalgas.phr2.menu.PMenuItem
 import com.missnalgas.phr2.menu.recyclerview.MenuAdapter
@@ -28,9 +29,10 @@ class MenuFragment : Fragment() {
 
     companion object {
         var isShowingAdd = false
+        const val REWARDED_AD_ID = "ca-app-pub-7933650770519707/4469011900"
     }
 
-    private var items : List<PMenuItem>? = null
+    private lateinit var items : List<PMenuItem>
 
 
     private fun loadMenu(context : Context) {
@@ -42,8 +44,8 @@ class MenuFragment : Fragment() {
                     clickListener = View.OnClickListener {
                         if (!isShowingAdd) {
                             isShowingAdd = true
-                            Toast.makeText(context, "Getting add...", Toast.LENGTH_SHORT).show()
-                            rewardedAd = RewardedAd(context, "ca-app-pub-7933650770519707/4469011900")
+                            Toast.makeText(context, context.getString(R.string.getting_add), Toast.LENGTH_SHORT).show()
+                            rewardedAd = RewardedAd(context, REWARDED_AD_ID)
                             val activity = activity as AppCompatActivity
                             rewardedAd.loadAd(AdRequest.Builder().build(), AdListener.AddLoadCallback(rewardedAd, activity))
                         }
@@ -82,7 +84,7 @@ class MenuFragment : Fragment() {
                     image = ContextCompat.getDrawable(context, R.drawable.leaves_logo)
                     clickListener = View.OnClickListener {
                         val intent = Intent(Intent.ACTION_VIEW)
-                        intent.data = Uri.parse("https://mssnapplications.com/leaves/")
+                        intent.data = Uri.parse(Leaves.URL_MAIN)
                         startActivity(intent)
                     }
                 }.build()
@@ -93,7 +95,7 @@ class MenuFragment : Fragment() {
                     textColor = Color.WHITE
                     clickListener = View.OnClickListener {
                         val intent = Intent(Intent.ACTION_VIEW)
-                        intent.data = Uri.parse("https://github.com/MissNalgas/Leaves")
+                        intent.data = Uri.parse(Leaves.GITHUB_URL)
                         startActivity(intent)
                     }
                 }.build()
@@ -117,16 +119,15 @@ class MenuFragment : Fragment() {
         context?.let {context -> loadMenu(context) }
 
         view?.let {view ->
-            items?.let {items ->
-                val recyclerview = view.findViewById<RecyclerView>(R.id.menu_recyclerview)
-                val adapter = MenuAdapter(items)
-                recyclerview.setHasFixedSize(true)
-                val layoutManager = GridLayoutManager(context, 2)
-                layoutManager.spanSizeLookup = MenuSpanSizeLookup(items)
-                recyclerview.setHasFixedSize(true)
-                recyclerview.layoutManager = layoutManager
-                recyclerview.adapter = adapter
-            }
+
+            val recyclerview = view.findViewById<RecyclerView>(R.id.menu_recyclerview)
+            val adapter = MenuAdapter(items)
+            recyclerview.setHasFixedSize(true)
+            val layoutManager = GridLayoutManager(context, 2)
+            layoutManager.spanSizeLookup = MenuSpanSizeLookup(items)
+            recyclerview.setHasFixedSize(true)
+            recyclerview.layoutManager = layoutManager
+            recyclerview.adapter = adapter
 
         }
 

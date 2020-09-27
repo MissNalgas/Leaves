@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.gms.ads.MobileAds
 import com.google.firebase.messaging.FirebaseMessaging
-import com.missnalgas.phr2.phrase.Phrase
+import com.missnalgas.phr2.api.Leaves
 import com.missnalgas.phr2.viewmodel.MainViewModel
 import com.missnalgas.phr2.viewmodel.ViewModelFactory
 import com.missnalgas.phr2.viewpager.ViewAdapter
@@ -25,7 +25,6 @@ class MainActivity :  AppCompatActivity() {
     private val viewModel : MainViewModel by lazy {
         return@lazy ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
     }
-    private lateinit var data: Phrase
 
 
    private val pageChangeCallback : ViewPager2.OnPageChangeCallback by lazy {
@@ -49,7 +48,7 @@ class MainActivity :  AppCompatActivity() {
 
 
     private fun subscribeToGeneralTopic() {
-        FirebaseMessaging.getInstance().subscribeToTopic("general")
+        FirebaseMessaging.getInstance().subscribeToTopic(Leaves.MAIN_TOPIC)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,17 +80,6 @@ class MainActivity :  AppCompatActivity() {
             color?.let{
                 vp.background = it
             }
-        })
-        viewModel.dataLiveData.observe(this, { phr ->
-            phr?.let {
-                data = phr
-                vp.adapter?.let {_ ->
-                    val viewAdapter = ViewAdapter(this)
-                    vp.adapter = viewAdapter
-                    vp.adapter?.notifyDataSetChanged()
-                }
-            }
-
         })
     }
 }

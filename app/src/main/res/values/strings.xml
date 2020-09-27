@@ -1,7 +1,6 @@
 <resources>
     <string name="notification_channel_default">com.missnalgas.phr2.main_channel_id</string>
     <string name="app_name">Leaves</string>
-    <string name="connection_failure">Connection failure! :(</string>
     <string name="watch_ad">Watch Ad</string>
     <string name="about">About</string>
     <string name="version">Version</string>
@@ -11,4 +10,8 @@
     <string name="about_snackbar">Brought to you by MssnApps</string>
     <string name="channel_notification_name">Phrases notifications</string>
     <string name="channel_notification_description">A new phrase everyday</string>
+    <string name="getting_add">Getting Ad…</string>
+    <string name="ad_error">We couldn\'t find any Ad :(</string>
+    <string name="menu_image">Image from menu item.</string>
+    <string name="i">i</string>
 </resources>

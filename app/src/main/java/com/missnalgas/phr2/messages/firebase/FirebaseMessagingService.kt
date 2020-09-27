@@ -6,10 +6,14 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.missnalgas.phr2.MainActivity
 import com.missnalgas.phr2.api.ApiService
+import com.missnalgas.phr2.api.Leaves
 import com.missnalgas.phr2.messages.Messages
 import com.missnalgas.phr2.services.NotificationService
 
+
+
 class FirebaseMessagingService : FirebaseMessagingService() {
+
 
     override fun onNewToken(token: String) {
         /*EMPTY*/
@@ -54,7 +58,7 @@ class FirebaseMessagingService : FirebaseMessagingService() {
 
         val list = am.runningAppProcesses
         list.map {
-            if (it.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND && it.processName == "com.missnalgas.phr2"){
+            if (it.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND && it.processName == Leaves.PROCESS_NAME){
                 return true
             }
         }
@@ -64,11 +68,11 @@ class FirebaseMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(messageFromServer: RemoteMessage) {
 
 
-        val messageType = messageFromServer.data["messagetype"]
+        val messageType = messageFromServer.data[Leaves.MESSAGE_TYPE]
         messageType?.let {
             when (Messages.decode(it)) {
                 Messages.NEW_LEAF -> onNewLeaf()
-                Messages.MESSAGE -> onMessage(messageFromServer.data["title"], messageFromServer.data["content"])
+                Messages.MESSAGE -> onMessage(messageFromServer.data[Leaves.TITLE], messageFromServer.data[Leaves.CONTENT])
                 Messages.ERROR -> onError()
             }
         }

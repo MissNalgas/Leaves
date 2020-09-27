@@ -7,12 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import com.missnalgas.phr2.R
 import com.missnalgas.phr2.phrase.Phrase
 
-class ContentFragment() : Fragment() {
+class ContentFragment : Fragment() {
 
 
     override fun onCreateView(

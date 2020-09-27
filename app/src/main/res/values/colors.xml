@@ -6,10 +6,5 @@
     <color name="colorText">#ffffff</color>
     <color name="colorTextLang">#373737</color>
     <color name="colorBackgroundLang">#F6F5F5</color>
-    <color name="colorMainRedA">#dd3218</color>
-    <color name="colorMainRedB">#c7342f</color>
-    <color name="colorMainRedC">#ed392c</color>
     <color name="colorMainA">#374e69</color>
-    <color name="colorMainB">#374e69</color>
-    <color name="colorMainC">#374e69</color>
 </resources>

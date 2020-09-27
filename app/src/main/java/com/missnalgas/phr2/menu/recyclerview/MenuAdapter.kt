@@ -1,11 +1,9 @@
 package com.missnalgas.phr2.menu.recyclerview
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -45,12 +43,9 @@ class MenuAdapter(private val items : List<PMenuItem>) : RecyclerView.Adapter<Me
         view.setOnClickListener(item.clickListener)
 
         val description = view.findViewById<TextView>(R.id.description_textview)
-        if (item.hasDescription) {
-            description.text = item.description
-            description.visibility = View.VISIBLE
-        } else {
-            description.visibility = View.GONE
-        }
+        description.text = item.description
+        description.visibility = if (item.hasDescription) View.VISIBLE else View.GONE
+
 
     }
 

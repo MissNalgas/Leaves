@@ -7,10 +7,11 @@ import android.view.View
 class PMenuItem private constructor(val title: String, val span : Int, val color : Int, val textColor : Int, val image : Drawable?, val clickListener : View.OnClickListener, val hasDescription : Boolean, val description : String) {
 
 
+    companion object {
+        private const val DEFAULT_TEXT_COLOR = -14474460 /* DARK GRAY */
+    }
 
-    class Builder() {
-
-        private val DEFAULT_TEXT_COLOR by lazy { Color.parseColor("#232324") } /* WHITE GRAYISH */
+    class Builder {
 
         var title = "Title"
         var span = 2

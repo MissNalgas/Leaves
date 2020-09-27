@@ -1,3 +1,12 @@
+import org.json.JSONObject
+import org.json.simple.parser.JSONParser
+
+FileReader file = new FileReader("manifest.json")
+JSONParser parser = new JSONParser()
+JSONObject jsonObject = parser.parse(file)
+String s_Version = jsonObject.get("version")
+println(s_Version)
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -11,7 +20,7 @@ android {
         minSdkVersion 28
         targetSdkVersion 29
         versionCode 4
-        versionName "1.0.2"
+        versionName s_Version
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import com.missnalgas.phr2.R
 import com.missnalgas.phr2.phrase.Phrase
 
-class TitleFragment() : Fragment() {
+class TitleFragment : Fragment() {
 
 
     override fun onCreateView(

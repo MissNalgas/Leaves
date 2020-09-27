@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <TextView
         android:layout_width="match_parent"
@@ -10,7 +9,7 @@
         android:id="@+id/phrase_title"
         android:gravity="center"
         android:textColor="@color/colorText"
-        android:textSize="45dp"
+        android:textSize="45sp"
         android:fontFamily="@font/lobster"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,5 @@
 package com.missnalgas.phr2
 
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.LoadAdError
@@ -23,7 +22,7 @@ class AdListener{
 
         override fun onRewardedAdFailedToLoad(error: LoadAdError?) {
             super.onRewardedAdFailedToLoad(error)
-            Toast.makeText(activity.baseContext, "We couldn't find any Ad :(", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity.baseContext, activity.getString(R.string.ad_error), Toast.LENGTH_SHORT).show()
             MenuFragment.isShowingAdd = false
         }
     }

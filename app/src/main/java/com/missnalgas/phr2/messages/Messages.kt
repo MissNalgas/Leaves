@@ -1,5 +1,7 @@
 package com.missnalgas.phr2.messages
 
+import com.missnalgas.phr2.api.Leaves
+
 enum class Messages {
     NEW_LEAF,
     MESSAGE,
@@ -8,8 +10,8 @@ enum class Messages {
     companion object {
         fun decode(string: String) : Messages {
             return when(string) {
-                "com.missnalgas.phr2.message.new_leaf" -> NEW_LEAF
-                "com.missnalgas.phr2.message.message" -> MESSAGE
+                Leaves.MESSAGE_NEW_LEAF -> NEW_LEAF
+                Leaves.MESSAGE_MESSAGE -> MESSAGE
                 else -> ERROR
             }
         }

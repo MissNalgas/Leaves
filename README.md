@@ -6,7 +6,7 @@
 Leaves is primary an example of a ViewPager with a gradient background that changes color.
 
 The app shows everyday a "Leaf". It can be a fragment from a book or any phrase at all.
-The fisrt page is the "Leaf" and the second are the "veins" that explain what that phrase means to you or something you can learn from it.
+The first page is the "Leaf" and the second are the "veins" that explain what that phrase means to you or something you can learn from it.
 Anyone can make a Leave and the app shows a new one everyday so we can learn something new everyday from a book or our own imagination.
 
 ## Contents
@@ -24,7 +24,7 @@ You can clone the repository using:
 
 `$ git clone https://github.com/missnalgas/leaves.git`
 
-You can intall Leaves on your android device directly from the [PlayStore](https://play.google.com/store/apps/details?id=com.missnalgas.phr2).
+You can install Leaves on your android device directly from the [PlayStore](https://play.google.com/store/apps/details?id=com.missnalgas.phr2).
 
 ## How to use
 
